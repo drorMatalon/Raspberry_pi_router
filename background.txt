@@ -1,0 +1,65 @@
+# ==
+# IP
+# ==
+
+1. IP (Internet Protocol) is an address system used to identify devices on a network
+2. IPv4 addresses consist of four numbers separated by dots (e.g., 192.168.1.1), some networks uses IPv6
+3. An external (public) IP identifies your network on the wider internet
+4. Internal (private) IPs are localized and assigned by your router to each connected device
+5. LAN (Local Area Network): A localized network of devices (like your home network) that communicate directly with each other
+6. WAN (Wide Area Network): A vast network that extends over a large geographical area (e.g., the Internet)
+7. Subnet Mask (Submask): A number (e.g., 255.255.255.0) that determines which part of an IP address represents the network and which part represents the individual device, essentially defining the boundaries of your LAN
+8. Default Gateway: The IP address of your router on the local network. When a device wants to send data to an IP outside its own subnet (like an internet website), it sends it to the default gateway first
+9. NAT (Network Address Translation): A process your router uses to translate all your private internal IP addresses into a single public IP address (plus ports ID) before sending traffic to the internet, and vice versa when receiving data back
+10. Ports: Virtual communication endpoints identified by numbers (0-65535) that allow multiple applications on a single device to share a network connection (web browsers use port 80, SSH uses port 22, DNS port 53 and so on)
+
+# ======
+# ROUTER
+# ======
+
+1. A router is a networking device that forwards data packets between computer networks
+2. It acts as a dispatcher, directing traffic and choosing the best route for information to travel
+3. In a home network, it typically connects local devices (LAN) to the broader internet (WAN)
+4. It provides local network routing, a firewall, and often wireless access point capabilities
+
+# ========================
+# WIFI (BANDS & CHANNELS)
+# ========================
+
+1. Wi-Fi Basics: Wi-Fi is a family of wireless network protocols (based on IEEE 802.11 standards) that allows devices to connect to a LAN via radio frequencies instead of cables
+2. OSI Layers: Wi-Fi primarily functions at Layer 1 (Physical layer, transmitting and receiving raw radio waves) and Layer 2 (Data Link layer, handling MAC addressing and media access control) of the OSI network model
+3. Wi-Fi operates primarily on two mainstream frequency bands: 2.4 GHz and 5 GHz
+4. The 2.4 GHz band offers longer range but slower speeds and is highly susceptible to interference
+5. The 5 GHz band offers much faster speeds but has a shorter range and weaker wall penetration
+6. Bands are divided into "channels" to help isolate traffic and prevent network congestion
+7. Using non-overlapping channels (e.g., 1, 6, 11 on 2.4 GHz) is important for stable performance
+
+# ====
+# DHCP
+# ====
+
+1. DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses to network devices
+2. Your router acts as the DHCP server, managing a dedicated pool of local IP addresses
+3. Devices receive a temporary IP "lease" which is periodically renewed to prevent address conflicts
+4. For services like a Raspberry Pi server, you might configure a static IP instead of using DHCP 
+
+# ==========
+# DNS SERVER
+# ==========
+
+1. DNS (Domain Name System) translates human-readable domain names (like google.com) into IP addresses (like 142.250.190.46)
+2. It acts as the "phonebook" of the internet, so you don't have to memorize IP addresses
+3. When you connect to a network, the DHCP server usually also tells your device which DNS server to use
+4. You can use your ISP's default DNS, or switch to public ones like Google (8.8.8.8) or Cloudflare (1.1.1.1) for potentially faster or more private browsing
+
+# ===============
+# NETWORK MANAGER
+# ===============
+
+1. NetworkManager is a Linux tool for network controlling, and nmcli is its terminal interface (used heavily in RPI OS)
+2. nmtui is another terminal interface for NetworkManager, providing a more visual, text-based UI
+3. nmcli provides commands to monitor, configure, and manage network connections via terminal
+4. In NetworkManager each network is presented as a connection. For each connection, an interface is set (eth, wlan), mode (client, ap), Ipv4 mode (Automatic for DHCP, Manual for self cfg, Shared for AP), SSID and so on.
+5. Type "nmcli device" to see the status of all network interfaces (Ethernet, Wi-Fi, etc)
+6. Type "nmcli device wifi list" to print a list of nearby wireless networks
+7. Type "nmcli device wifi connect <SSID> password <PASSWORD>" to join a new network

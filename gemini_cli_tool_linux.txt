@@ -1,0 +1,120 @@
+# =======
+# INSTALL
+# =======
+
+1. Install Node.js (includes npm):
+   a. Download and setup NodeSource repository (e.g., for Ubuntu/Debian):
+      curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+   b. Install Node.js:
+      sudo apt install -y nodejs
+   c. Verify installation:
+      node -v
+      npm -v
+2. Install Gemini CLI tool:
+   a. Install globally:
+      sudo npm install -g @google/gemini-cli
+   b. Verify installation:
+      gemini --version
+
+
+# ===========
+# QUICK GUIDE
+# ===========
+
+1. Login:
+   Run:
+      gemini
+   - Follow the browser authentication flow
+   - Sign in with your Google account
+2. Ask a question:
+   a. Interactive mode:
+      gemini
+      > your question here
+   b. One-line mode:
+      gemini "your question here"
+3. Use files as context:
+   a. Option A (recommended - piping):
+      gemini "analyze this code" < FILE_PATH
+   b. Option B (reference in prompt):
+      gemini "analyze the following code: @FILE_PATH"
+4. Help:
+      gemini --help
+
+# ==========================
+# SESSION & WORKSPACE FOCUS
+# ==========================
+
+The directory where you launch 'gemini' (Session Directory) defines your project:
+
+1. Scope: History and auto-saves are scoped to the launch directory.
+2. Discovery: The CLI searches for GEMINI.md files and local .gemini/ 
+   configurations starting from this directory.
+3. Data: Project-specific temp data is stored in ~/.gemini/tmp/ based on 
+    the launch directory path's hash.
+
+
+# =========
+# ABILITIES
+# =========
+
+1. Provides terminal access to cloud-based Gemini LLM via a CLI interface
+2. Supports:
+   - Question answering
+   - Code generation
+   - Code review and debugging
+   - Text summarization
+   - Iterative conversational workflows
+3. File system interaction:
+   - File reading for context
+   - Code editing (with user confirmation when applicable)
+   
+# ==================
+# USEFUL CLI TAGS (/)
+# ==================
+
+/help           - Show available commands and usage help
+/model          - View or switch between available models
+/compress       - Summarize and compress context to save tokens
+/clear          - Clear the current conversation history
+/history        - Show conversation history
+/memory			- Load and view GEMENI.md files
+/chat			- Enables managment of chats: save, resume, delete etc ...
+/init           - Initialize a project (generates a tailored GEMINI.md)
+/directory 		- Enables managment of session scope (including add directories)
+/exit           - Exit the CLI session
+/stats			- Tokens status and tokens limit and refresh time per model
+
+
+# ==========
+# EXTENSIONS
+# ==========
+
+1. Install Google Workspace Extension:
+   a. Run the installation command:
+      npm install -g @google/gemini-extension-google-workspace
+2. Verify Installation:
+   a. From the terminal:
+      gemini extensions list
+   b. Within an interactive session:
+      /extensions list
+3. Safety:
+   This extension is safe to use as it is **open source** and operates via an **MCP (Model Context Protocol)** server that runs **locally** on your machine. This ensures your data is handled on your hardware and only accessed with your explicit permission.
+4. Features:
+   - Provides the CLI tool access to your Google Workspace data.
+   - Specifically enables interaction with Google Calendar and Gmail.
+   - Allows for searching emails, managing schedules, and creating events directly from the terminal.
+
+
+# ==============================
+# PROJECT PERSISTENCE (GEMINI.md)
+# ==============================
+
+GEMINI.md files provide persistent context and rules for the AI (coding standards, 
+project goals, etc.) without repeating them in every prompt.
+Context is loaded hierarchically:
+1. Global:    ~/.gemini/GEMINI.md (applies to all sessions)
+2. Workspace: GEMINI.md in project root or parent directories
+Use /memory show to see the combined context from all active GEMINI.md files and /memory reload to force the CLI tool read those such files.
+
+
+

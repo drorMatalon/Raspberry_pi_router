@@ -1,0 +1,66 @@
+# ===========
+# OS DOWNLOAD
+# ===========
+
+1. Download Raspberry Pi Imager from the official Raspberry Pi website
+2. Choose the relevant RPI model and the RPI OS LITE (Recommended)
+3. Insert the PC the SD card for the RPI
+4. Before starting the download, enable SSH connection and add your home router connection details
+5. Click on "Write" and wait for the OS to be installed
+
+# ==============
+# SSH CONNECTION
+# ==============
+
+1. Connect to your RPI via RPI connect to set an SSH password by typing: sudo passwd <RPI name>
+1. In your PC, open a shall window (CMD / Powershell)
+2. Identify your RPI IP using arp -a command
+3. Type the following command: ssh <RPI host name>@<RPI IP address>, enter password if needed
+4. To close the SSH connection type exit
+5. Copy the router system to the rpi using: scp -r "C:\Users\drorm\main dir\programming\raspberry pi\router" drors_rpi4@192.168.1.237:/home/drors_rpi4/
+
+# ===============
+# INSTALL SCRIPTS
+# ===============
+1. Move the bash files to the ~ directory at hide
+2. Source .bashrc
+3. Use the gollowing aliases accourding to need: get_pi_hole, get_argon, get_sw_cli, get_sw_gui
+4. install dos2unix with "sudo apt install dos2unix" and run dos2unix ~/.start_message.sh
+
+# ===============
+# HOTSPOT CONTROL
+# ===============
+1. Before activating the hotspot, edit the configuration file with your desired network details: nano ~/router/hotspot_config.xml
+2. To activate a hotspot use: sudo python ~/router/activate_hotspot.py
+3. To verify the hotspot is active, list your connections using: nmcli connection show --active
+4. To close the hotspot use: bash ~/router/delete_hotspot.sh
+
+# =====================
+# HOTSPOT CONTROL NMCLI
+# =====================
+1. Basic hotspot can be allso created manually with nmcli:
+   -> nmcli device wifi Hotspot ssid <SSID> password <PASSWORD> ifname wlan0
+   -> nmcli connection up Hotspot
+2. To close the hotspot with nmcli:
+   -> nmcli connection down Hotspot
+3. To set static IP for the device use:
+   -> nmcli connection modify Hotspot ipv4.addresses <IP>/<Subnet mask> (Example 10.0.0.1/24)
+4. To set DNS or Gateway (requiered change from shared to manual ipv4 method):
+   -> nmcli connection modify Hotspot ipv4.dns <IP> ipv4.gateway <IP> ipv4.method manual
+5. Remove the connection using:
+   -> nmcli connection delete Hotspot
+
+# ==================
+# MONITOR with nmcli
+# ==================
+1. To see which network the router is currently connected to for internet (WAN), type: nmcli connection show --active
+   - Look for the connection name that is NOT your hotspot (e.g., your home Wi-Fi).
+2. To list all available Wi-Fi networks around you: nmcli device wifi list
+3. To connect to a different Wi-Fi network (WAN): nmcli device wifi connect <SSID> password <password>
+4. To switch to a previously saved connection: nmcli connection up <Connection Name>
+
+# ============================
+# NETWORK MANAGER CFG AND LOGS
+# ============================
+1. Hotspot configuration at: /etc/NetworkManager/system-connections/Hotspot.nmconnection
+2. DHPC logs: /var/lib/NetworkManager/dnsmasq*.leases (sudo is required to view)
