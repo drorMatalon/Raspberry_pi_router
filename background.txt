@@ -1,3 +1,12 @@
+# ======
+# ROUTER
+# ======
+
+1. A router is a networking device that forwards data packets between computer networks
+2. It acts as a dispatcher, directing traffic and choosing the best route for information to travel
+3. In a home network, it typically connects local devices (LAN) to the broader internet (WAN)
+4. It provides local network routing, a firewall, and often wireless access point capabilities
+
 # ==
 # IP
 # ==
@@ -10,17 +19,16 @@
 6. WAN (Wide Area Network): A vast network that extends over a large geographical area (e.g., the Internet)
 7. Subnet Mask (Submask): A number (e.g., 255.255.255.0) that determines which part of an IP address represents the network and which part represents the individual device, essentially defining the boundaries of your LAN
 8. Default Gateway: The IP address of your router on the local network. When a device wants to send data to an IP outside its own subnet (like an internet website), it sends it to the default gateway first
-9. NAT (Network Address Translation): A process your router uses to translate all your private internal IP addresses into a single public IP address (plus ports ID) before sending traffic to the internet, and vice versa when receiving data back
-10. Ports: Virtual communication endpoints identified by numbers (0-65535) that allow multiple applications on a single device to share a network connection (web browsers use port 80, SSH uses port 22, DNS port 53 and so on)
+9. Ports: Virtual communication endpoints identified by numbers (0-65535) that allow multiple applications on a single device to share a network connection (web browsers use port 80, SSH uses port 22, DNS port 53 and so on)
 
-# ======
-# ROUTER
-# ======
+# ===========================
+# ROUTING & IP FORWARDING (L3)
+# ===========================
 
-1. A router is a networking device that forwards data packets between computer networks
-2. It acts as a dispatcher, directing traffic and choosing the best route for information to travel
-3. In a home network, it typically connects local devices (LAN) to the broader internet (WAN)
-4. It provides local network routing, a firewall, and often wireless access point capabilities
+1. IP Forwarding: The Linux kernel mechanism (net.ipv4.ip_forward) that allows a system to act as a gateway, passing packets from one interface (e.g., wlan0) to another (e.g., eth0)
+2. Routing Table: A local database (viewable via "ip route") that tells the OS exactly where to send packets based on their destination IP address
+3. Packet Traversal: When a packet arrives, the kernel checks the routing table. If the destination is external, it's sent to the WAN interface (eth0/wlan1) after NAT processing
+4. NAT (Network Address Translation): A process your router uses to translate all your private internal IP addresses into a single public IP address (plus ports ID) before sending traffic to the internet, and vice versa when receiving data back
 
 # ========================
 # WIFI (BANDS & CHANNELS)
@@ -33,6 +41,12 @@
 5. The 5 GHz band offers much faster speeds but has a shorter range and weaker wall penetration
 6. Bands are divided into "channels" to help isolate traffic and prevent network congestion
 7. Using non-overlapping channels (e.g., 1, 6, 11 on 2.4 GHz) is important for stable performance
+8. Wi-Fi Generations: 
+   - Wi-Fi 4 (802.11n): Introduced MIMO (Multiple-Input Multiple-Output), 2.4/5GHz
+   - Wi-Fi 5 (802.11ac): 5GHz only, 256-QAM modulation, MU-MIMO
+   - Wi-Fi 6 (802.11ax): 2.4/5GHz, 1024-QAM, OFDMA (Orthogonal Frequency-Division Multiple Access) for high-density efficiency
+9. Signal Strength (RSSI): Measured in dBm (decibel-milliwatts). -30 dBm is excellent, -70 dBm is weak, -90 dBm is the noise floor
+10. SNR (Signal-to-Noise Ratio): The difference between signal and noise floor; higher SNR allows for higher-order modulation schemes (MCS index) and better throughput
 
 # ====
 # DHCP
