@@ -34,7 +34,7 @@
 ### Option A: Via SCP (Remote Copy)
 Copy the project folder from your PC to the RPi:
 ```bash
-scp -r "C:\Users\drorm\main_dir\programming\raspberry pi\router" <username>@<IP>:/home/<username>/
+scp -r "C:\Users\drorm\main_dir\programming\raspberry pi\router" <username>@<IP>:/home/<username>/Raspberry_pi_router/
 ```
 
 ### Option B: Via Git
@@ -58,7 +58,7 @@ scp -r "C:\Users\drorm\main_dir\programming\raspberry pi\router" <username>@<IP>
 
 1. Move bash configuration files to your home directory:
    ```bash
-   cp ~/router/boot_files/.* ~/
+   cp ~/Raspberry_pi_router/boot_files/.* ~/
    ```
 2. Reload your profile:
    ```bash
@@ -78,11 +78,11 @@ scp -r "C:\Users\drorm\main_dir\programming\raspberry pi\router" <username>@<IP>
 
 1. **Configuration:** Edit the network details (SSID, Password, Band):
    ```bash
-   nano ~/router/scripts/hotspot_config.xml
+   nano ~/Raspberry_pi_router/scripts/hotspot_config.xml
    ```
 2. **Activate:** Run the activation script:
    ```bash
-   sudo python3 ~/router/scripts/activate_hotspot.py
+   sudo python3 ~/Raspberry_pi_router/scripts/activate_hotspot.py
    ```
 3. **Verify:** Check active connections:
    ```bash
@@ -90,7 +90,7 @@ scp -r "C:\Users\drorm\main_dir\programming\raspberry pi\router" <username>@<IP>
    ```
 4. **Deactivate:** Run the cleanup script:
    ```bash
-   bash ~/router/scripts/delete_hotspot.sh
+   bash ~/Raspberry_pi_router/scripts/delete_hotspot.sh
    ```
 
 # ===========================
