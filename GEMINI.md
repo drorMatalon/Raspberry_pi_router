@@ -1,4 +1,4 @@
-﻿# Project: Raspberry Pi Router & Network Management
+﻿# Project: Raspberry_pi_router & Network Management
 
 This project configures a Raspberry Pi as a functional network router and security hub. It includes tools for managing a Wi-Fi hotspot, DNS filtering with Pi-hole, and general network monitoring.
 
