@@ -52,6 +52,13 @@ scp -r "C:\Users\drorm\main_dir\programming\raspberry pi\router" <username>@<IP>
    git clone https://github.com/drorMatalon/Raspberry_pi_router.git
    ```
 
+### Option C: Update to the Latest Version
+If you already have the project and want the latest improvements:
+```bash
+cd ~/Raspberry_pi_router
+git pull origin main
+```
+
 # ==================
 # 4. SCRIPT SETUP
 # ==================
