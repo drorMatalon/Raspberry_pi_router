@@ -13,6 +13,7 @@ alias vs='code'
 alias py='python3'
 alias cv='python3 -m venv venv && source venv/bin/activate'
 alias av='source venv/bin/activate'
+alias dv='deactivate'
 
 # =========
 # Downloads
@@ -23,9 +24,9 @@ alias get_argon='curl https://download.argon40.com/argon1.sh | bash'
 alias get_sw_cli='sudo apt update && sudo apt install -y micro curl'
 alias get_sw_gui='sudo apt update && sudo apt install -y gedit code'
 
-# ======
-# status
-# ======
+# ========
+# terminal
+# ========
 
 system_status() {
     echo -e "\n\033[1;33m--- SYSTEM MONITOR ---\033[0m"    
@@ -38,3 +39,4 @@ system_status() {
     echo -e "\033[1;33m----------------------\033[0m\n"
 }
 alias status='system_status'
+alias la='ls -a'
