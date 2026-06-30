@@ -10,11 +10,13 @@
    c. Verify installation:
       node -v
       npm -v
-2. Install Gemini CLI tool:
+2. Install Claude Code:
    a. Install globally:
-      sudo npm install -g @google/gemini-cli
+      sudo npm install -g @anthropic-ai/claude-code
    b. Verify installation:
-      gemini --version
+      claude --version
+   c. (Optional) Diagnose the installation:
+      claude doctor
 
 
 # ===========
@@ -23,41 +25,42 @@
 
 1. Login:
    Run:
-      gemini
+      claude
+   - On first launch, run /login (or follow the prompt)
    - Follow the browser authentication flow
-   - Sign in with your Google account
+   - Sign in with your Claude (Anthropic) account, or use an API key
 2. Ask a question:
    a. Interactive mode:
-      gemini
+      claude
       > your question here
-   b. One-line mode:
-      gemini "your question here"
+   b. One-line mode (print and exit):
+      claude -p "your question here"
 3. Use files as context:
    a. Option A (recommended - piping):
-      gemini "analyze this code" < FILE_PATH
-   b. Option B (reference in prompt):
-      gemini "analyze the following code: @FILE_PATH"
+      cat FILE_PATH | claude -p "analyze this code"
+   b. Option B (reference in prompt with @):
+      claude "analyze the following code: @FILE_PATH"
 4. Help:
-      gemini --help
+      claude --help
 
 # ==========================
 # SESSION & WORKSPACE FOCUS
 # ==========================
 
-The directory where you launch 'gemini' (Session Directory) defines your project:
+The directory where you launch 'claude' (Session Directory) defines your project:
 
 1. Scope: History and auto-saves are scoped to the launch directory.
-2. Discovery: The CLI searches for GEMINI.md files and local .gemini/ 
-   configurations starting from this directory.
-3. Data: Project-specific temp data is stored in ~/.gemini/tmp/ based on 
-    the launch directory path's hash.
+2. Discovery: Claude Code searches for CLAUDE.md files and local .claude/
+   configurations starting from this directory upward.
+3. Data: Project-specific data and history are stored under ~/.claude/
+   keyed to the launch directory path.
 
 
 # =========
 # ABILITIES
 # =========
 
-1. Provides terminal access to cloud-based Gemini LLM via a CLI interface
+1. Provides terminal access to cloud-based Claude LLM via a CLI interface
 2. Supports:
    - Question answering
    - Code generation
@@ -66,55 +69,60 @@ The directory where you launch 'gemini' (Session Directory) defines your project
    - Iterative conversational workflows
 3. File system interaction:
    - File reading for context
-   - Code editing (with user confirmation when applicable)
-   
+   - Code editing (with user confirmation / permission prompts)
+   - Running shell commands (with permission)
+
 # ==================
 # USEFUL CLI TAGS (/)
 # ==================
 
 /help           - Show available commands and usage help
 /model          - View or switch between available models
-/compress       - Summarize and compress context to save tokens
+/compact        - Summarize and compress context to save tokens
 /clear          - Clear the current conversation history
-/history        - Show conversation history
-/memory			- Load and view GEMENI.md files
-/chat			- Enables managment of chats: save, resume, delete etc ...
-/init           - Initialize a project (generates a tailored GEMINI.md)
-/directory 		- Enables managment of session scope (including add directories)
+/resume         - Browse and resume a previous conversation
+/memory         - Load and edit CLAUDE.md files
+/init           - Initialize a project (generates a tailored CLAUDE.md)
+/add-dir        - Manage session scope (add directories to the workspace)
+/config         - View or change settings
+/login          - Sign in / switch account
+/cost           - Show token usage and cost for the current session
 /exit           - Exit the CLI session
-/stats			- Tokens status and tokens limit and refresh time per model
 
 
 # ==========
-# EXTENSIONS
+# MCP SERVERS
 # ==========
 
-1. Install Google Workspace Extension:
-   a. Run the installation command:
-      npm install -g @google/gemini-extension-google-workspace
-2. Verify Installation:
+Claude Code extends its abilities through MCP (Model Context Protocol) servers.
+
+1. Add an MCP server (example - generic):
    a. From the terminal:
-      gemini extensions list
+      claude mcp add <name> -- <command to launch the server>
+2. Verify / manage MCP servers:
+   a. From the terminal:
+      claude mcp list
    b. Within an interactive session:
-      /extensions list
+      /mcp
 3. Safety:
-   This extension is safe to use as it is **open source** and operates via an **MCP (Model Context Protocol)** server that runs **locally** on your machine. This ensures your data is handled on your hardware and only accessed with your explicit permission.
+   MCP servers run locally on your machine and operate via the Model Context
+   Protocol. Data is handled on your hardware and only accessed with your
+   explicit permission.
 4. Features:
-   - Provides the CLI tool access to your Google Workspace data.
-   - Specifically enables interaction with Google Calendar and Gmail.
-   - Allows for searching emails, managing schedules, and creating events directly from the terminal.
+   - Connect external tools and data sources (e.g. Google Workspace).
+   - Enables interaction with services such as Google Calendar and Gmail.
+   - Allows searching emails, managing schedules, and creating events directly
+     from the terminal.
 
 
 # ==============================
-# PROJECT PERSISTENCE (GEMINI.md)
+# PROJECT PERSISTENCE (CLAUDE.md)
 # ==============================
 
-GEMINI.md files provide persistent context and rules for the AI (coding standards, 
+CLAUDE.md files provide persistent context and rules for the AI (coding standards,
 project goals, etc.) without repeating them in every prompt.
 Context is loaded hierarchically:
-1. Global:    ~/.gemini/GEMINI.md (applies to all sessions)
-2. Workspace: GEMINI.md in project root or parent directories
-Use /memory show to see the combined context from all active GEMINI.md files and /memory reload to force the CLI tool read those such files.
-
-
-
+1. Global:    ~/.claude/CLAUDE.md (applies to all sessions)
+2. Workspace: CLAUDE.md in project root or parent directories
+Use /memory to view and edit the active CLAUDE.md files. Changes are picked up
+on the next prompt.

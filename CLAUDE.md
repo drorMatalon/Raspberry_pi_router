@@ -6,7 +6,7 @@ This project configures a Raspberry Pi as a functional network router and securi
 - **Network Fundamentals:** ./background.txt (IP, DHCP, DNS, WiFi Bands/Channels, NetworkManager basics)
 - **Pi-hole Setup:** ./pi_hole_set_up.txt (Installation, Static IP, Port 53 conflicts, Admin Webpage)
 - **Router & OS Setup:** ./router_set_up.txt (OS Image, SSH, Hotspot control overview, Monitoring commands)
-- **Linux CLI Guide:** ./gemini_cli_tool_linux.txt (Gemini CLI installation, usage, and extensions on Linux)
+- **Linux CLI Guide:** ./claude_code_cli_linux.txt (Claude Code installation, usage, and MCP servers on Linux)
 
 ## Automation Scripts
 - **Hotspot Activation:** ./scripts/activate_hotspot.py (Python/nmcli automation)
